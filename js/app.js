@@ -5,6 +5,7 @@
   let config = {};
   let current = null;
   let currentMsg = "";
+  let selected = null;
 
   const money = (n) =>
     new Intl.NumberFormat("es-AR", {
@@ -18,6 +19,14 @@
     if (cls) e.className = cls;
     if (text != null) e.textContent = text;
     return e;
+  }
+
+  // Versiones disponibles para comprar: el original sale cuando se vende, la impresión queda siempre
+  function opciones(obra) {
+    const o = [];
+    if (obra.precioOriginal && !obra.originalVendido) o.push({ tipo: "Original", precio: obra.precioOriginal });
+    if (obra.precioImpresion) o.push({ tipo: "Impresión", precio: obra.precioImpresion });
+    return o;
   }
 
   function renderGrid(obras) {
@@ -36,11 +45,14 @@
       const meta = el("div", "card-meta");
       meta.appendChild(el("h3", "card-title", obra.titulo));
       meta.appendChild(el("p", "card-sub", obra.tecnica + " · " + obra.medidas));
-      meta.appendChild(
-        obra.vendida
-          ? el("p", "card-price sold", "Vendida")
-          : el("p", "card-price", money(obra.precio))
-      );
+      const prices = el("div", "card-prices");
+      if (obra.originalVendido) prices.appendChild(el("p", "card-price sold", "Original vendido"));
+      opciones(obra).forEach((op) => {
+        const line = el("p", "card-price");
+        line.append(el("span", "card-price-label", op.tipo), el("span", null, money(op.precio)));
+        prices.appendChild(line);
+      });
+      meta.appendChild(prices);
 
       card.append(imgWrap, meta);
       card.addEventListener("click", () => open(obra));
@@ -61,14 +73,31 @@
     $("m-anio").textContent = obra.anio || "";
     $("m-anio").hidden = $("m-anio-label").hidden = !obra.anio;
     $("m-desc").textContent = obra.descripcion || "";
-    $("m-price").textContent = obra.vendida ? "Vendida" : money(obra.precio);
+    const ops = opciones(obra);
+    const box = $("m-options");
+    box.innerHTML = "";
+    ops.forEach((op, i) => {
+      const b = el("button", "option");
+      b.type = "button";
+      b.append(el("span", "option-label", op.tipo), el("span", "option-price", money(op.precio)));
+      b.addEventListener("click", () => select(op, b));
+      box.appendChild(b);
+      if (i === 0) select(op, b);
+    });
+    if (!ops.length) selected = null;
+    $("m-sold").hidden = !obra.originalVendido;
 
     const buy = $("btn-buy");
-    buy.disabled = !!obra.vendida;
-    buy.textContent = obra.vendida ? "Vendida" : "Comprar";
+    buy.disabled = !ops.length;
+    buy.textContent = ops.length ? "Comprar" : "Vendida";
 
     showStep("detail");
     modal.showModal();
+  }
+
+  function select(op, btn) {
+    selected = op;
+    $("m-options").querySelectorAll(".option").forEach((b) => b.classList.toggle("active", b === btn));
   }
 
   function showStep(step) {
@@ -79,10 +108,10 @@
   function showPay() {
     const obra = current;
     $("p-alias").textContent = config.alias;
-    $("p-amount").textContent = money(obra.precio);
-    $("p-title").textContent = obra.titulo;
+    $("p-amount").textContent = money(selected.precio);
+    $("p-title").textContent = obra.titulo + " · " + selected.tipo;
 
-    const msg = "Hola, transferí " + money(obra.precio) + " por la obra \"" + obra.titulo + "\". Adjunto el comprobante.";
+    const msg = "Hola, transferí " + money(selected.precio) + " por la obra \"" + obra.titulo + "\" (" + selected.tipo.toLowerCase() + "). Adjunto el comprobante.";
     currentMsg = msg;
     const wa = (config.whatsapp || "").replace(/\D/g, "");
     const ig = (config.instagram || "").replace(/^@/, "");

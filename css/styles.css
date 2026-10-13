@@ -95,7 +95,9 @@ img { display: block; max-width: 100%; }
   font-weight: 400;
 }
 .card-sub { font-size: 0.85rem; color: var(--muted); }
-.card-price { font-size: 0.92rem; margin-top: 4px; }
+.card-prices { margin-top: 6px; display: grid; gap: 2px; }
+.card-price { font-size: 0.92rem; display: flex; justify-content: space-between; gap: 12px; }
+.card-price-label { color: var(--muted); }
 .sold { color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.75rem; }
 
 .footer {
@@ -171,7 +173,27 @@ img { display: block; max-width: 100%; }
 }
 .specs dt { color: var(--muted); }
 .desc { margin: 20px 0; font-size: 0.95rem; }
-.price { font-size: 1.25rem; font-weight: 400; margin-bottom: 24px; }
+.options { display: grid; gap: 10px; margin-bottom: 14px; }
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 14px 18px;
+  background: transparent;
+  border: 1px solid var(--line);
+  font-family: var(--sans);
+  font-weight: 300;
+  color: var(--fg);
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.option:hover { border-color: var(--muted); }
+.option.active { border-color: var(--fg); }
+.option-label { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.option-price { font-size: 1.1rem; font-weight: 400; }
+.sold-note { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+#btn-buy { margin-top: 10px; }
 .muted { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
 
 .btn {

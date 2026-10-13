@@ -14,9 +14,10 @@
       "medidas": "80 x 100 cm",
       "anio": 2025,
       "descripcion": "Una línea de luz que separa el cielo del mar al final de la tarde.",
-      "precio": 450000,
+      "precioOriginal": 450000,
+      "precioImpresion": 60000,
       "imagen": "img/obra-1.svg",
-      "vendida": false
+      "originalVendido": false
     },
     {
       "id": "jardin-interior",
@@ -25,9 +26,10 @@
       "medidas": "60 x 60 cm",
       "anio": 2025,
       "descripcion": "Formas orgánicas y verdes profundos inspirados en un patio de infancia.",
-      "precio": 320000,
+      "precioOriginal": 320000,
+      "precioImpresion": 45000,
       "imagen": "img/obra-2.svg",
-      "vendida": false
+      "originalVendido": false
     },
     {
       "id": "terracota",
@@ -36,9 +38,10 @@
       "medidas": "50 x 70 cm",
       "anio": 2024,
       "descripcion": "Estudio de tierra y calor, con capas superpuestas de ocres.",
-      "precio": 280000,
+      "precioOriginal": 280000,
+      "precioImpresion": 40000,
       "imagen": "img/obra-3.svg",
-      "vendida": false
+      "originalVendido": false
     },
     {
       "id": "silencio",
@@ -47,9 +50,10 @@
       "medidas": "40 x 50 cm",
       "anio": 2024,
       "descripcion": "Grises suaves y una forma solitaria en el centro de la composición.",
-      "precio": 190000,
+      "precioOriginal": 190000,
+      "precioImpresion": 35000,
       "imagen": "img/obra-4.svg",
-      "vendida": true
+      "originalVendido": true
     }
   ]
 }

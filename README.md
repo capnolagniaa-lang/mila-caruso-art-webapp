@@ -22,14 +22,16 @@ Todo se edita en `data/obras.json`. Cada obra:
   "medidas": "80 x 100 cm",
   "anio": 2025,
   "descripcion": "Texto breve.",
-  "precio": 450000,
+  "precioOriginal": 450000,
+  "precioImpresion": 60000,
   "imagen": "img/horizonte.jpg",
-  "vendida": false
+  "originalVendido": false
 }
 ```
 
 - Subí la foto a la carpeta `img/` y poné su ruta en `imagen`.
-- `"vendida": true` muestra la obra como vendida y desactiva la compra.
+- Cada obra se ofrece en dos versiones: **Original** e **Impresión**.
+- `"originalVendido": true` saca el original de la venta; la obra sigue publicada y se puede comprar la impresión.
 - `anio` es opcional.
 
 ## Pago
