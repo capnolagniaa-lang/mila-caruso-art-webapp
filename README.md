@@ -36,4 +36,4 @@ Todo se edita en `data/obras.json`. Cada obra:
 
 Al tocar **Comprar** se muestra el alias de Mercado Pago (`config.alias`, por defecto `milacaruso`) y el monto.
 
-En `config` podés completar `whatsapp` (con código de país, ej. `5491112345678`) o `email` (`whatsapp`, `instagram`) para los botones de envío de comprobante, y `instagram` para el pie de página.
+Después se ofrece enviar el comprobante por WhatsApp (`config.whatsapp`, con código de país, ej. `5491139320330`) o por Instagram (`config.instagram`). El usuario de Instagram también aparece en el pie de página.
