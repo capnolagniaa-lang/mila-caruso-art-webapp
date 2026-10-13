@@ -4,6 +4,7 @@
   const modal = $("modal");
   let config = {};
   let current = null;
+  let currentMsg = "";
 
   const money = (n) =>
     new Intl.NumberFormat("es-AR", {
@@ -82,17 +83,16 @@
     $("p-title").textContent = obra.titulo;
 
     const msg = "Hola, transferí " + money(obra.precio) + " por la obra \"" + obra.titulo + "\". Adjunto el comprobante.";
-    const receipt = $("btn-receipt");
+    currentMsg = msg;
     const wa = (config.whatsapp || "").replace(/\D/g, "");
-    if (wa) {
-      receipt.href = "https://wa.me/" + wa + "?text=" + encodeURIComponent(msg);
-      receipt.hidden = false;
-    } else if (config.email) {
-      receipt.href = "mailto:" + config.email + "?subject=" + encodeURIComponent("Compra: " + obra.titulo) + "&body=" + encodeURIComponent(msg);
-      receipt.hidden = false;
-    } else {
-      receipt.hidden = true;
-    }
+    const ig = (config.instagram || "").replace(/^@/, "");
+    const btnWa = $("btn-wa");
+    const btnIg = $("btn-ig");
+    btnWa.hidden = !wa;
+    if (wa) btnWa.href = "https://wa.me/" + wa + "?text=" + encodeURIComponent(msg);
+    btnIg.hidden = !ig;
+    if (ig) btnIg.href = "https://ig.me/m/" + ig;
+    $("receipt").hidden = !wa && !ig;
     showStep("pay");
   }
 
@@ -104,17 +104,21 @@
     toast.timer = setTimeout(() => t.classList.remove("show"), 1800);
   }
 
-  async function copyAlias() {
+  async function copy(text) {
     try {
-      await navigator.clipboard.writeText(config.alias);
+      await navigator.clipboard.writeText(text);
     } catch (e) {
       const ta = document.createElement("textarea");
-      ta.value = config.alias;
+      ta.value = text;
       document.body.appendChild(ta);
       ta.select();
       document.execCommand("copy");
       ta.remove();
     }
+  }
+
+  function copyAlias() {
+    copy(config.alias);
     toast("Alias copiado");
   }
 
@@ -143,6 +147,11 @@
   $("btn-buy").addEventListener("click", showPay);
   $("btn-back").addEventListener("click", () => showStep("detail"));
   $("btn-copy").addEventListener("click", copyAlias);
+  // Instagram no permite precargar el mensaje: se copia para pegarlo en el chat
+  $("btn-ig").addEventListener("click", () => {
+    copy(currentMsg);
+    toast("Mensaje copiado, pegalo en el chat");
+  });
   modal.querySelector(".modal-close").addEventListener("click", () => modal.close());
   modal.addEventListener("click", (e) => {
     if (e.target === modal) modal.close();

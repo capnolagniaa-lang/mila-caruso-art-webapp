@@ -190,6 +190,10 @@ img { display: block; max-width: 100%; }
   transition: background .2s, color .2s;
 }
 .btn:hover { background: transparent; color: var(--fg); }
+.btn-outline { background: transparent; color: var(--fg); }
+.btn-outline:hover { background: var(--fg); color: var(--bg); }
+.receipt-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+#receipt .muted { margin-bottom: 10px; }
 .btn:disabled { opacity: .4; cursor: default; background: var(--fg); color: var(--bg); }
 
 .btn-link {
