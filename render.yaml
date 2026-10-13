@@ -1,0 +1,11 @@
+services:
+  - type: web
+    runtime: static
+    name: mila-caruso-art
+    branch: main
+    buildCommand: ""
+    staticPublishPath: .
+    headers:
+      - path: /data/*
+        name: Cache-Control
+        value: no-cache

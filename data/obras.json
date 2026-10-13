@@ -1,0 +1,55 @@
+{
+  "config": {
+    "alias": "milacaruso",
+    "moneda": "ARS",
+    "whatsapp": "",
+    "email": "",
+    "instagram": ""
+  },
+  "obras": [
+    {
+      "id": "horizonte",
+      "titulo": "Horizonte",
+      "tecnica": "Óleo sobre lienzo",
+      "medidas": "80 x 100 cm",
+      "anio": 2025,
+      "descripcion": "Una línea de luz que separa el cielo del mar al final de la tarde.",
+      "precio": 450000,
+      "imagen": "img/obra-1.svg",
+      "vendida": false
+    },
+    {
+      "id": "jardin-interior",
+      "titulo": "Jardín interior",
+      "tecnica": "Acrílico sobre lienzo",
+      "medidas": "60 x 60 cm",
+      "anio": 2025,
+      "descripcion": "Formas orgánicas y verdes profundos inspirados en un patio de infancia.",
+      "precio": 320000,
+      "imagen": "img/obra-2.svg",
+      "vendida": false
+    },
+    {
+      "id": "terracota",
+      "titulo": "Terracota",
+      "tecnica": "Óleo sobre tela",
+      "medidas": "50 x 70 cm",
+      "anio": 2024,
+      "descripcion": "Estudio de tierra y calor, con capas superpuestas de ocres.",
+      "precio": 280000,
+      "imagen": "img/obra-3.svg",
+      "vendida": false
+    },
+    {
+      "id": "silencio",
+      "titulo": "Silencio",
+      "tecnica": "Técnica mixta sobre papel",
+      "medidas": "40 x 50 cm",
+      "anio": 2024,
+      "descripcion": "Grises suaves y una forma solitaria en el centro de la composición.",
+      "precio": 190000,
+      "imagen": "img/obra-4.svg",
+      "vendida": true
+    }
+  ]
+}

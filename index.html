@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mila Caruso</title>
+  <meta name="description" content="Pinturas originales de Mila Caruso.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <a href="./" class="logo">Mila Caruso</a>
+    <nav class="nav">
+      <a href="#obras">Obras</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1>Pinturas originales</h1>
+    </section>
+
+    <section id="obras" class="grid" aria-live="polite"></section>
+  </main>
+
+  <footer id="contacto" class="footer">
+    <p class="footer-name">Mila Caruso</p>
+    <p id="footer-contact"></p>
+    <p class="footer-copy">&copy; <span id="year"></span></p>
+  </footer>
+
+  <dialog id="modal" class="modal">
+    <button class="modal-close" type="button" aria-label="Cerrar">&times;</button>
+    <div class="modal-body">
+      <div class="modal-image"><img id="m-img" alt=""></div>
+      <div class="modal-info">
+        <div id="step-detail">
+          <h2 id="m-title"></h2>
+          <dl class="specs">
+            <dt>Técnica</dt><dd id="m-tecnica"></dd>
+            <dt>Medidas</dt><dd id="m-medidas"></dd>
+            <dt id="m-anio-label">Año</dt><dd id="m-anio"></dd>
+          </dl>
+          <p id="m-desc" class="desc"></p>
+          <p id="m-price" class="price"></p>
+          <button id="btn-buy" class="btn" type="button">Comprar</button>
+        </div>
+
+        <div id="step-pay" hidden>
+          <h2>Pago por transferencia</h2>
+          <p class="muted">Transferí desde Mercado Pago al siguiente alias.</p>
+          <div class="pay-box">
+            <span class="pay-label">Alias</span>
+            <div class="pay-row">
+              <span id="p-alias" class="pay-value"></span>
+              <button id="btn-copy" class="btn-link" type="button">Copiar</button>
+            </div>
+            <span class="pay-label">Monto</span>
+            <span id="p-amount" class="pay-value"></span>
+            <span class="pay-label">Obra</span>
+            <span id="p-title" class="pay-value small"></span>
+          </div>
+          <a id="btn-receipt" class="btn" target="_blank" rel="noopener" hidden>Enviar comprobante</a>
+          <button id="btn-back" class="btn-link back" type="button">Volver</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
